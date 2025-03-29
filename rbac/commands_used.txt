@@ -1,0 +1,57 @@
+383  cat pod-reader-role.yaml
+  384  cat dashboard-sa-role-binding.yaml
+  385  vi deployement.yaml
+  386  kubectl apply -f deployement.yaml
+  387  kubectl get pods
+  388  kubectl describe pod web-dashboard-5f88cdc488-gh79m
+  389  kubectl get pods
+  390  kubectl get deploy
+  391  kubectl expose deploy web-dashboard --type=NodePort
+  392  kubectl get svc
+  393  ls
+  394  cat dashboard-sa-role-binding.yaml
+  395  kubectl create sa dashboard-sa
+  396  kubectl create token dashboard-sa
+  397  vi deployement.yaml
+  398  kubectl get deploy
+  399  kubectl get pods
+  400  kubectl delete deploy web-dashboard
+  401  kubectl apply -f deployement.yaml
+  402  kubectl get pods
+  403  kubectl get sa
+  404  kubectl get secret
+  405  kubectl get secrets
+  406  kubectl get secret
+  407  vi secret.yaml
+  408  kubectl apply -f secret.yaml
+  409  vi secret.yaml
+  410  kubectl apply -f secret.yaml
+  411  kubectl get secret
+  412  kubectl get sa
+  413  kubectl apply -f secret.yaml
+  414  vi secret.yaml
+  415  kubectl apply -f secret.yaml
+  416  kubectl get sa
+  417  kubectl describe secret mysecretnam
+  418  kubectl get sa
+  419  ls
+  420  vi pod-reader-role.yaml
+  421  vi dashboard-sa-role-binding.yaml
+  422  kubectl auth can-i list pods --as=system:serviceaccount:default:dashboard-sa -n default
+  423  cat dashboard-sa-role-binding.yaml
+  424  kubectl describe sa dashboard-sa
+  425  kubectl auth can-i list pods --as=system:serviceaccount:default:dashboard-sa -n default
+  426  kubectl auth can-i list pods --as=system:serviceaccount:dashboard-sa -n default
+  427  kubectl auth can-i list pods --as=system:serviceaccount:default:dashboard-sa -n default
+  428  ls
+  429  cat pod-reader-role.yaml
+  430  cat dashboard-sa-role-binding.yaml
+  431  kubectl auth can-i list pods --as=system:serviceaccount:default:dashboard-sa -n default
+  432  kubectl apply -f pod-reader-role.yaml
+  433  kubectl apply -f dashboard-sa-role-binding.yaml
+  434  kubectl auth can-i list pods --as=system:serviceaccount:default:dashboard-sa -n default
+  435  ls
+  436  vi secret.yaml
+  437  ls
+  438  history
+

@@ -1,3 +1,6 @@
+
+https://medium.com/expedia-group-tech/autoscaling-in-kubernetes-why-doesnt-the-horizontal-pod-autoscaler-work-for-me-5f0094694054
+
 k create deployment course-tracker-dep --image=sprasanna1992/spring-boot:84cc96bb44efc3a1a518211ed744ea2f5c4eb027  --port=8080
 k expose deploy/course-tracker-dep --type=NodePort --port=8080
 

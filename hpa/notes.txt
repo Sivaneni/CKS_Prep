@@ -1,0 +1,60 @@
+k create deployment course-tracker-dep --image=sprasanna1992/spring-boot:84cc96bb44efc3a1a518211ed744ea2f5c4eb027  --port=8080
+k expose deploy/course-tracker-dep --type=NodePort --port=8080
+
+# make sure metrics server is installed
+   create deployement and service
+
+        kubectl apply -f https://k8s.io/examples/application/php-apache.yaml
+install metrics server
+       
+       kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+       check if metrics-server is installed or not
+       kubectl get pods -n kube-system
+
+           if not
+            kubectl edit deploy metrics-server -n kube-system 
+       
+           Add  --kubelet-insecure-tls as below
+
+                spec:
+                containers:
+                - args:
+                    - --kubelet-insecure-tls
+
+create hpa for a deployment
+
+            kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+            
+            to veiw hpa file 
+            
+                kubectl edit hpa php-apache
+
+test the application
+
+
+            kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"
+
+
+            kubectl get hpa php-apache --watch
+k autoscale deploy course-tracker-dep --min=1 --max=10 --cpu-percentage=50%
+# ingress 
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+kubectl create secret tls my-secret --cert=<path-to-cert> --key=<path-to-key>
+# to generate keys and store as secret in kubenretes     
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt
+     kubectl create secret tls my-secret --cert=tls.crt --key=tls.key
+
+
+# apply the file ingress.yaml
+
+k apply -f ingress.yaml
+
+#
+
+self-signed certificate steps:
+
+	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt
+     
+	 The -x509 option specifies that you want a self-signed certificate, -nodes means no passphrase, -days 365 sets the certificate validity to one year, and -newkey rsa:2048 generates a new RSA key of 2048 bits
